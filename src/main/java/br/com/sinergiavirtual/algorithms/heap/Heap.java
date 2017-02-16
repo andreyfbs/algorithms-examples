@@ -4,6 +4,16 @@ import java.util.Arrays;
 
 /**
  * See definition of Heap : http://www.personal.kent.edu/~rmuhamma/Algorithms/MyAlgorithms/Sorting/heapSort.htm
+ *
+ * the min-heap property: the value of each node is greater than or equal to the value of its parent, with the minimum-value element at the root.
+ * the max-heap property: the value of each node is less than or equal to the value of its parent, with the maximum-value element at the root.
+ *
+ * PARENT (i)
+ *  return floor(i/2)
+ * LEFT (i)
+ *  return 2i
+ * RIGHT (i)
+ *  return 2i + 1
  */
 public class Heap {
 
