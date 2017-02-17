@@ -13,10 +13,6 @@ public class BSTNode {
         return value;
     }
 
-    public void setValue(Integer value) {
-        this.value = value;
-    }
-
     public BSTNode getLeft() {
         return left;
     }
@@ -45,8 +41,6 @@ public class BSTNode {
                 "value=" + value +
                 ", left=" + (left != null && left.getValue() != null ? left.getValue().toString() : "") +
                 ", right=" + (right != null && right.getValue() != null ? right.getValue().toString() : "") +
-                //", left=" + (left != null ? left : "NULL") +
-                //", right=" + (right != null ? right: "NULL") +
                 '}';
     }
 

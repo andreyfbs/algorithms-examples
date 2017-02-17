@@ -8,6 +8,22 @@ import java.util.stream.Collectors;
 
 public class BST {
 
+    private BSTNode bstNodeRoot;
+
+    private StringBuilder treePrint = new StringBuilder();
+
+    public BST() {
+        super();
+    }
+
+    public BST(int[] bstNodes) {
+        bstNodeRoot = new BSTNode(bstNodes[0]);
+
+        for (int i = 1; i < bstNodes.length; i++) {
+            fillBst(bstNodeRoot, bstNodes[i]);
+        }
+    }
+
     /**
      * Dist(n1, n2) = Dist(root, n1) + Dist(root, n2) - 2*Dist(root, lca)
      * 'n1' and 'n2' are the two given keys
@@ -15,30 +31,39 @@ public class BST {
      * 'lca' is lowest common ancestor of n1 and n2
      * Dist(n1, n2) is the distance between n1 and n2.
      */
-    public int findDistanceBetweenNodes(BSTNode bstNodeRoot, BSTNode bstNode1, BSTNode bstNode2) {
+    public int findDistanceBetweenNodes(BSTNode bstNode1, BSTNode bstNode2) {
 
-        Deque<BSTNode> pathRootToNode1 = findPathFromRoot(bstNodeRoot, bstNode1);
-        Deque<BSTNode> pathRootToNode2 = findPathFromRoot(bstNodeRoot, bstNode2);
-        BSTNode BSTNodeLca = findLcaNode(bstNodeRoot, bstNode1, bstNode2);
-        Deque<BSTNode> pathRootToNodeLca = findPathFromRoot(bstNodeRoot, BSTNodeLca);
+        BSTNode[] pathRootToNode1 = findPathFromRoot(bstNode1);
+        BSTNode[] pathRootToNode2 = findPathFromRoot(bstNode2);
+        BSTNode BSTNodeLca = findLcaNode(bstNode1, bstNode2);
 
-        System.out.println("1=" + pathRootToNode1.size() + " 2=" + pathRootToNode2.size() + " 3=" + pathRootToNodeLca.size());
-        if (pathRootToNode1.size() == 0 || pathRootToNode2.size() == 0) {
+        BSTNode[] pathRootToNodeLca = findPathFromRoot(BSTNodeLca);
+
+        System.out.println("1=" + pathRootToNode1.length + " 2=" + pathRootToNode2.length + " 3=" + pathRootToNodeLca.length);
+        if (pathRootToNode1.length == 0 || pathRootToNode2.length == 0) {
             return -1;
         } else {
-            return (pathRootToNode1.size() - 1 + pathRootToNode2.size() - 1) - (2 * (pathRootToNodeLca.size() - 1));
+            return (pathRootToNode1.length - 1 + pathRootToNode2.length - 1) - (2 * (pathRootToNodeLca.length - 1));
         }
     }
 
-    public Deque<BSTNode> findPathFromRoot(BSTNode bstNodeRoot, BSTNode bstNode2) {
+    public BSTNode[] findPathFromRoot(BSTNode bstNode2) {
         Deque<BSTNode> deque = new ArrayDeque<>();
         findPathFromRoot(bstNodeRoot, bstNode2, deque);
 
+        List<BSTNode> pathRootToNode1List = deque.stream().collect(Collectors.toList());
+        Collections.reverse(pathRootToNode1List);
+        BSTNode[] pathRootToNode1Array = pathRootToNode1List.stream().toArray(BSTNode[]::new);
 
-        return deque;
+        return pathRootToNode1Array;
     }
 
-    public BSTNode fillBst(BSTNode bstNode, int valueToAdd) {
+    public String printBST() {
+        printBST(bstNodeRoot);
+        return treePrint.toString();
+    }
+
+    private BSTNode fillBst(BSTNode bstNode, int valueToAdd) {
 
         final BSTNode newBstNode;
         if (bstNode.getValue() > valueToAdd) {
@@ -61,8 +86,9 @@ public class BST {
         return newBstNode;
     }
 
-    public void printBST(BSTNode bstNodeRoot) {
-        System.out.println("Node: " + bstNodeRoot.toStringFull());
+    private void printBST(BSTNode bstNodeRoot) {
+        treePrint.append(bstNodeRoot.toStringFull()).append("\n").toString();
+
         if (bstNodeRoot.getLeft() != null) {
             printBST(bstNodeRoot.getLeft());
         }
@@ -71,24 +97,17 @@ public class BST {
         }
     }
 
-    private BSTNode findLcaNode(BSTNode bstNodeRoot, BSTNode bstNode1, BSTNode bstNode2) {
+    private BSTNode findLcaNode(BSTNode bstNode1, BSTNode bstNode2) {
 
-        Deque<BSTNode> pathRootToNode1 = findPathFromRoot(bstNodeRoot, bstNode1);
-        Deque<BSTNode> pathRootToNode2 = findPathFromRoot(bstNodeRoot, bstNode2);
+        BSTNode[] pathRootToNode1 = findPathFromRoot(bstNode1);
+        BSTNode[] pathRootToNode2 = findPathFromRoot(bstNode2);
 
         if (pathRootToNode1 != null && pathRootToNode2 != null) {
 
-            List<BSTNode> pathRootToNode1List = pathRootToNode1.stream().collect(Collectors.toList());
-            Collections.reverse(pathRootToNode1List);
-            BSTNode[] pathRootToNode1Array = pathRootToNode1List.stream().toArray(BSTNode[]::new);
 
-            List<BSTNode> pathRootToNode2List = pathRootToNode2.stream().collect(Collectors.toList());
-            Collections.reverse(pathRootToNode2List);
-            BSTNode[] pathRootToNode2Array = pathRootToNode2List.stream().toArray(BSTNode[]::new);
-
-            for (int i = 0; i < pathRootToNode1Array.length && i < pathRootToNode2Array.length; i++) {
-                if (!pathRootToNode1Array[i].equals(pathRootToNode2Array[i])) {
-                    return pathRootToNode1Array[i - 1];
+            for (int i = 0; i < pathRootToNode1.length && i < pathRootToNode2.length; i++) {
+                if (!pathRootToNode1[i].equals(pathRootToNode2[i])) {
+                    return pathRootToNode1[i - 1];
                 }
             }
             return bstNodeRoot;
@@ -96,19 +115,19 @@ public class BST {
         return null;
     }
 
-    private boolean findPathFromRoot(BSTNode bstNode1, BSTNode bstNode2, Deque<BSTNode> path) {
+    private boolean findPathFromRoot(BSTNode bstNode1, BSTNode bstNode2, Deque<BSTNode> pathStack) {
         //System.out.println(path);
         if (bstNode1 == null) {
             return false;
         }
-        path.push(bstNode1);
+        pathStack.push(bstNode1);
         if (bstNode1.getValue().equals(bstNode2.getValue())) {
             return true;
         }
-        if (findPathFromRoot(bstNode1.getLeft(), bstNode2, path) || findPathFromRoot(bstNode1.getRight(), bstNode2, path)) {
+        if (findPathFromRoot(bstNode1.getLeft(), bstNode2, pathStack) || findPathFromRoot(bstNode1.getRight(), bstNode2, pathStack)) {
             return true;
         }
-        path.pop();
+        pathStack.pop();
         return false;
     }
 }

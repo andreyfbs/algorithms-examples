@@ -18,22 +18,16 @@ public class BSTTest {
         final int node1 = 5;
         final int node2 = 2;
 
-        final BSTNode bstNodeRoot = new BSTNode(arrayBst[0]);
         final BSTNode bstNode1 = new BSTNode(node1);
         final BSTNode bstNode2 = new BSTNode(node2);
+        final BST bst = new BST(arrayBst);
 
-        BST bst = new BST();
-
-        for (int i = 1; i < arrayBst.length; i++) {
-            bst.fillBst(bstNodeRoot, arrayBst[i]);
-        }
-
-        System.out.println("Tree: ");
-        bst.printBST(bstNodeRoot);
-        System.out.println("Path: " + bst.findPathFromRoot(bstNodeRoot, bstNode2));
+        // Log
+        System.out.println("Tree:");
+        System.out.println(bst.printBST());
 
         // Act
-        int distance = bst.findDistanceBetweenNodes(bstNodeRoot, bstNode1, bstNode2);
+        int distance = bst.findDistanceBetweenNodes(bstNode1, bstNode2);
 
         // Assert
         Assert.assertThat(distance, Matchers.comparesEqualTo(3));
@@ -47,22 +41,16 @@ public class BSTTest {
         final int node1 = 2;
         final int node2 = 4;
 
-        final BSTNode bstNodeRoot = new BSTNode(arrayBst[0]);
         final BSTNode bstNode1 = new BSTNode(node1);
         final BSTNode bstNode2 = new BSTNode(node2);
+        final BST bst = new BST(arrayBst);
 
-        BST bst = new BST();
-
-        for (int i = 1; i < arrayBst.length; i++) {
-            bst.fillBst(bstNodeRoot, arrayBst[i]);
-        }
-
-        System.out.println("Tree: ");
-        bst.printBST(bstNodeRoot);
-        System.out.println("Path: " + bst.findPathFromRoot(bstNodeRoot, bstNode2));
+        // Log
+        System.out.println("Tree:");
+        System.out.println(bst.printBST());
 
         // Act
-        int distance = bst.findDistanceBetweenNodes(bstNodeRoot, bstNode1, bstNode2);
+        int distance = bst.findDistanceBetweenNodes(bstNode1, bstNode2);
 
         // Assert
         Assert.assertThat(distance, Matchers.comparesEqualTo(3));
@@ -76,22 +64,16 @@ public class BSTTest {
         final int node1 = 7;
         final int node2 = 20;
 
-        final BSTNode bstNodeRoot = new BSTNode(arrayBst[0]);
         final BSTNode bstNode1 = new BSTNode(node1);
         final BSTNode bstNode2 = new BSTNode(node2);
+        final BST bst = new BST(arrayBst);
 
-        BST bst = new BST();
-
-        for (int i = 1; i < arrayBst.length; i++) {
-            bst.fillBst(bstNodeRoot, arrayBst[i]);
-        }
-
-        System.out.println("Tree: ");
-        bst.printBST(bstNodeRoot);
-        System.out.println("Path: " + bst.findPathFromRoot(bstNodeRoot, bstNode2));
+        // Log
+        System.out.println("Tree:");
+        System.out.println(bst.printBST());
 
         // Act
-        int distance = bst.findDistanceBetweenNodes(bstNodeRoot, bstNode1, bstNode2);
+        int distance = bst.findDistanceBetweenNodes(bstNode1, bstNode2);
 
         // Assert
         Assert.assertThat(distance, Matchers.comparesEqualTo(-1));
@@ -105,22 +87,16 @@ public class BSTTest {
         final int node1 = 2;
         final int node2 = 20;
 
-        final BSTNode bstNodeRoot = new BSTNode(arrayBst[0]);
         final BSTNode bstNode1 = new BSTNode(node1);
         final BSTNode bstNode2 = new BSTNode(node2);
+        final BST bst = new BST(arrayBst);
 
-        BST bst = new BST();
-
-        for (int i = 1; i < arrayBst.length; i++) {
-            bst.fillBst(bstNodeRoot, arrayBst[i]);
-        }
-
-        System.out.println("Tree: ");
-        bst.printBST(bstNodeRoot);
-        System.out.println("Path: " + bst.findPathFromRoot(bstNodeRoot, bstNode2));
+        // Log
+        System.out.println("Tree:");
+        System.out.println(bst.printBST());
 
         // Act
-        int distance = bst.findDistanceBetweenNodes(bstNodeRoot, bstNode1, bstNode2);
+        int distance = bst.findDistanceBetweenNodes(bstNode1, bstNode2);
 
         // Assert
         Assert.assertThat(distance, Matchers.comparesEqualTo(-1));
@@ -134,22 +110,16 @@ public class BSTTest {
         final int node1 = 9;
         final int node2 = 10;
 
-        final BSTNode bstNodeRoot = new BSTNode(arrayBst[0]);
         final BSTNode bstNode1 = new BSTNode(node1);
         final BSTNode bstNode2 = new BSTNode(node2);
+        final BST bst = new BST(arrayBst);
 
-        BST bst = new BST();
-
-        for (int i = 1; i < arrayBst.length; i++) {
-            bst.fillBst(bstNodeRoot, arrayBst[i]);
-        }
-
-        System.out.println("Tree: ");
-        bst.printBST(bstNodeRoot);
-        System.out.println("Path: " + bst.findPathFromRoot(bstNodeRoot, bstNode2));
+        // Log
+        System.out.println("Tree:");
+        System.out.println(bst.printBST());
 
         // Act
-        int distance = bst.findDistanceBetweenNodes(bstNodeRoot, bstNode1, bstNode2);
+        int distance = bst.findDistanceBetweenNodes(bstNode1, bstNode2);
 
         // Assert
         Assert.assertThat(distance, Matchers.comparesEqualTo(-1));
@@ -163,25 +133,19 @@ public class BSTTest {
         final int node1 = 9;
         final int node2 = 9;
 
-        final BSTNode bstNodeRoot = new BSTNode(arrayBst[0]);
         final BSTNode bstNode1 = new BSTNode(node1);
         final BSTNode bstNode2 = new BSTNode(node2);
+        final BST bst = new BST(arrayBst);
 
-        BST bst = new BST();
-
-        for (int i = 1; i < arrayBst.length; i++) {
-            bst.fillBst(bstNodeRoot, arrayBst[i]);
-        }
-
-        System.out.println("Tree: ");
-        bst.printBST(bstNodeRoot);
-        System.out.println("Path: " + bst.findPathFromRoot(bstNodeRoot, bstNode2));
+        // Log
+        System.out.println("Tree:");
+        System.out.println(bst.printBST());
 
         // Act
-        int distance = bst.findDistanceBetweenNodes(bstNodeRoot, bstNode1, bstNode2);
+        int distance = bst.findDistanceBetweenNodes(bstNode1, bstNode2);
 
         // Assert
         Assert.assertThat(distance, Matchers.comparesEqualTo(0));
     }
-
+    
 }
