@@ -1,8 +1,23 @@
 package br.com.sinergiavirtual.algorithms.binarytree;
 
+/**
+ * Represents a Node of The Binary Tree
+ */
 public class BSTNode {
+
+    /**
+     * Value of the Node
+     */
     private Integer value;
+
+    /**
+     * The left Node of the Tree
+     */
     private BSTNode left;
+
+    /**
+     * The right Node of the Tree
+     */
     private BSTNode right;
 
     public BSTNode(int value) {
