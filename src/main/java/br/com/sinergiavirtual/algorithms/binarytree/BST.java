@@ -61,11 +61,13 @@ public class BST {
 
         BSTNode[] pathRootToNode1 = findPathFromRoot(bstNode1);
         BSTNode[] pathRootToNode2 = findPathFromRoot(bstNode2);
-        BSTNode bstNodeLCA = findLcaNodeFromNodePaths(bstNode1, bstNode2, pathRootToNode1, pathRootToNode2);
+        BSTNode bstNodeLCA = findLcaNode(pathRootToNode1, pathRootToNode2);
 
         BSTNode[] pathRootToNodeLca = findPathFromRoot(bstNodeLCA);
 
         System.out.println("1=" + pathRootToNode1.length + " 2=" + pathRootToNode2.length + " 3=" + pathRootToNodeLca.length);
+
+        // Calcule the Distance
         if (pathRootToNode1.length == 0 || pathRootToNode2.length == 0) {
             return -1;
         } else {
@@ -80,12 +82,19 @@ public class BST {
      */
     public BSTNode[] findPathFromRoot(BSTNode bstNode) {
 
+        // Create the Stack to be used in the DFS
         Deque<BSTNode> dequeStack = new ArrayDeque<>();
+
+        // Find The Path, check dequeStack
         findPathFromRootDFS(bstNodeRoot, bstNode, dequeStack);
 
+        // Transform to List
         List<BSTNode> pathRootToNode1List = dequeStack.stream().collect(Collectors.toList());
+
+        // Reverse Order of The List
         Collections.reverse(pathRootToNode1List);
 
+        // Transform from List to Array
         return pathRootToNode1List.stream().toArray(BSTNode[]::new);
     }
 
@@ -98,7 +107,14 @@ public class BST {
         return treePrint.toString();
     }
 
-    private BSTNode findLcaNodeFromNodePaths(BSTNode bstNode1, BSTNode bstNode2, BSTNode[] pathRootToNode1, BSTNode[] pathRootToNode2) {
+    /**
+     * Find the Lca (Lowest common ancestor) Node of two nodes. It uses the paths of the nodes already found.
+     *
+     * @param pathRootToNode1
+     * @param pathRootToNode2
+     * @return BSTNode Lca
+     */
+    private BSTNode findLcaNode(BSTNode[] pathRootToNode1, BSTNode[] pathRootToNode2) {
 
         if (pathRootToNode1 != null && pathRootToNode2 != null) {
 
@@ -113,9 +129,7 @@ public class BST {
     }
 
     /**
-     * Find the Lca(Lowest common ancestor) Node of two nodes
-     *
-     * Recursive approach.
+     * Find the Lca (Lowest common ancestor) Node of two nodes
      *
      * @param bstNode1
      * @param bstNode2
