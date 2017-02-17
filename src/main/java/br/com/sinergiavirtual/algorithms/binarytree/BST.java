@@ -35,9 +35,9 @@ public class BST {
 
         BSTNode[] pathRootToNode1 = findPathFromRoot(bstNode1);
         BSTNode[] pathRootToNode2 = findPathFromRoot(bstNode2);
-        BSTNode BSTNodeLca = findLcaNode(bstNode1, bstNode2);
+        BSTNode bstNodeLCA = findLcaNode(bstNode1, bstNode2);
 
-        BSTNode[] pathRootToNodeLca = findPathFromRoot(BSTNodeLca);
+        BSTNode[] pathRootToNodeLca = findPathFromRoot(bstNodeLCA);
 
         System.out.println("1=" + pathRootToNode1.length + " 2=" + pathRootToNode2.length + " 3=" + pathRootToNodeLca.length);
         if (pathRootToNode1.length == 0 || pathRootToNode2.length == 0) {
@@ -53,9 +53,8 @@ public class BST {
 
         List<BSTNode> pathRootToNode1List = deque.stream().collect(Collectors.toList());
         Collections.reverse(pathRootToNode1List);
-        BSTNode[] pathRootToNode1Array = pathRootToNode1List.stream().toArray(BSTNode[]::new);
 
-        return pathRootToNode1Array;
+        return pathRootToNode1List.stream().toArray(BSTNode[]::new);
     }
 
     public String printBST() {
