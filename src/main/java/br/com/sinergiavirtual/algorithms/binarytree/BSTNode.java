@@ -4,7 +4,6 @@ public class BSTNode {
     private Integer value;
     private BSTNode left;
     private BSTNode right;
-    //private
 
     public BSTNode(int value) {
         this.value = value;

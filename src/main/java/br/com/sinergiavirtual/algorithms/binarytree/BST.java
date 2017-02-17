@@ -1,7 +1,6 @@
 package br.com.sinergiavirtual.algorithms.binarytree;
 
 import java.util.ArrayDeque;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.List;
@@ -24,8 +23,7 @@ public class BST {
         Deque<BSTNode> pathRootToNodeLca = findPathFromRoot(bstNodeRoot, BSTNodeLca);
 
         System.out.println("1=" + pathRootToNode1.size() + " 2=" + pathRootToNode2.size() + " 3=" + pathRootToNodeLca.size());
-
-        if (pathRootToNode1.size() == 0 || pathRootToNode2.size() == 0 || pathRootToNodeLca.size() == 0) {
+        if (pathRootToNode1.size() == 0 || pathRootToNode2.size() == 0) {
             return -1;
         } else {
             return (pathRootToNode1.size() - 1 + pathRootToNode2.size() - 1) - (2 * (pathRootToNodeLca.size() - 1));
@@ -35,7 +33,42 @@ public class BST {
     public Deque<BSTNode> findPathFromRoot(BSTNode bstNodeRoot, BSTNode bstNode2) {
         Deque<BSTNode> deque = new ArrayDeque<>();
         findPathFromRoot(bstNodeRoot, bstNode2, deque);
+
+
         return deque;
+    }
+
+    public BSTNode fillBst(BSTNode bstNode, int valueToAdd) {
+
+        final BSTNode newBstNode;
+        if (bstNode.getValue() > valueToAdd) {
+            // left
+            if (bstNode.getLeft() != null) {
+                newBstNode = fillBst(bstNode.getLeft(), valueToAdd);
+            } else {
+                newBstNode = new BSTNode(valueToAdd);
+                bstNode.setLeft(newBstNode);
+            }
+        } else {
+            // right
+            if (bstNode.getRight() != null) {
+                newBstNode = fillBst(bstNode.getRight(), valueToAdd);
+            } else {
+                newBstNode = new BSTNode(valueToAdd);
+                bstNode.setRight(newBstNode);
+            }
+        }
+        return newBstNode;
+    }
+
+    public void printBST(BSTNode bstNodeRoot) {
+        System.out.println("Node: " + bstNodeRoot.toStringFull());
+        if (bstNodeRoot.getLeft() != null) {
+            printBST(bstNodeRoot.getLeft());
+        }
+        if (bstNodeRoot.getRight() != null) {
+            printBST(bstNodeRoot.getRight());
+        }
     }
 
     private BSTNode findLcaNode(BSTNode bstNodeRoot, BSTNode bstNode1, BSTNode bstNode2) {
@@ -77,38 +110,5 @@ public class BST {
         }
         path.pop();
         return false;
-    }
-
-    public BSTNode fillBst(BSTNode bstNode, int valueToAdd) {
-
-        final BSTNode newBstNode;
-        if (bstNode.getValue() > valueToAdd) {
-            // left
-            if (bstNode.getLeft() != null) {
-                newBstNode = fillBst(bstNode.getLeft(), valueToAdd);
-            } else {
-                newBstNode = new BSTNode(valueToAdd);
-                bstNode.setLeft(newBstNode);
-            }
-        } else {
-            // right
-            if (bstNode.getRight() != null) {
-                newBstNode = fillBst(bstNode.getRight(), valueToAdd);
-            } else {
-                newBstNode = new BSTNode(valueToAdd);
-                bstNode.setRight(newBstNode);
-            }
-        }
-        return newBstNode;
-    }
-
-    public void printBST(BSTNode bstNodeRoot) {
-        System.out.println(bstNodeRoot.toStringFull());
-        if (bstNodeRoot.getLeft() != null) {
-            printBST(bstNodeRoot.getLeft());
-        }
-        if (bstNodeRoot.getRight() != null) {
-            printBST(bstNodeRoot.getRight());
-        }
     }
 }
