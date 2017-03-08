@@ -3,7 +3,7 @@ package br.com.sinergiavirtual.algorithms.dictionary;
 import java.util.HashMap;
 import java.util.Map;
 
-public class flattenDictonary {
+public class FlattenDictionary {
 
     public static void main(String[] args) {
 
