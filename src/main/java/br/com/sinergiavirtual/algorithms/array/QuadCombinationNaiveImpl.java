@@ -1,6 +1,6 @@
 package br.com.sinergiavirtual.algorithms.array;
 
-public class QuadCombinationNaiveImpl extends QuadCombinationOptimizedSolution {
+public class QuadCombinationNaiveImpl extends QuadCombination {
 
     @Override
     public int[] calculeCombination(int[] array, int valueSum) {

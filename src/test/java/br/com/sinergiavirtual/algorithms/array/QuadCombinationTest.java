@@ -13,7 +13,7 @@ public class QuadCombinationTest {
 
     @Before
     public void setup() {
-        quadCombination = new QuadCombinationOptimizedSolution();
+        quadCombination = new QuadCombination();
     }
 
     @Test
