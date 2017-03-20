@@ -1,8 +1,5 @@
 package br.com.sinergiavirtual.algorithms.permutation;
 
-/**
- * Created by andrey on 19/03/17.
- */
 public class Permutation {
 
     public static void main(String[] args) {
