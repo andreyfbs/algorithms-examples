@@ -1,7 +1,7 @@
 package br.com.sinergiavirtual.algorithms.permutation;
 
 import br.com.sinergiavirtual.algorithms.string.ShortestString;
-import br.com.sinergiavirtual.algorithms.string.ShortestString2;
+import br.com.sinergiavirtual.algorithms.string.ShortestStringImpl2;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ public class ShortestStringTest {
 
     @Test
     public void shortestSubstrContainingAllChars() throws Exception {
-        ShortestString shortestString = new ShortestString2();
+        ShortestString shortestString = new ShortestStringImpl2();
 
         String result = shortestString.shortestSubstrContainingAllChars("acbbaca", "aba");
         assertThat(result, Matchers.equalTo("baca"));

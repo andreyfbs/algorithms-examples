@@ -1,6 +1,6 @@
 package br.com.sinergiavirtual.algorithms.string;
 
-public class ShortestString2 extends ShortestString {
+public class ShortestStringImpl2 extends ShortestString {
 
     public String shortestSubstrContainingAllChars(String input, String target) {
         int needToFind[] = new int[256];

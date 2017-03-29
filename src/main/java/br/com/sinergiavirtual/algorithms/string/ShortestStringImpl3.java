@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class ShortestString3 extends ShortestString {
+public class ShortestStringImpl3 extends ShortestString {
 
     private static Map<Character, Integer> frequency;
     private static Set<Character> charsCovered;
