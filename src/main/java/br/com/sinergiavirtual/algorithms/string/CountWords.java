@@ -8,13 +8,12 @@ import java.util.TreeMap;
 
 public class CountWords {
 
-    public static void main(String[] args) {
-        String sentence = "Car Bus Car Test Java";
+    public String countTheWords(String doc) {
 
-        String[] words = sentence.split(" ");
+        String[] words = doc.split(" ");
 
         Map<String, Integer> map = new HashMap<>();
-        for (String word: words) {
+        for (String word : words) {
             if (map.containsKey(word)) {
                 Integer count = map.get(word);
                 map.put(word, ++count);
@@ -23,28 +22,43 @@ public class CountWords {
             }
         }
 
-        Map<String, Integer> result = new LinkedHashMap<>();
-        map.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue())
-                .forEachOrdered(value -> result.put(value.getKey(), value.getValue()));;
+        Map<String, Integer> sortedMap = getSortedMap(map);
 
-        for (String key : result.keySet()) {
-            System.out.println(key + " " + map.get(key));
-        }
-
-
-        ValueComparator bvc = new ValueComparator(map);
-        Map<String, Integer> sorted_map = new TreeMap<>(bvc);
-        sorted_map.putAll(map);
-
-        for (String key : sorted_map.keySet()) {
-            System.out.println(key + " " + map.get(key));
-        }
-
+        return prepareToPrintMap(sortedMap, map);
     }
+
+    private Map<String, Integer> getSortedMap(Map<String, Integer> mapToOrder) {
+        ValueComparator bvc = new ValueComparator(mapToOrder);
+        Map<String, Integer> sorted_map = new TreeMap<>(bvc);
+        sorted_map.putAll(mapToOrder);
+        return sorted_map;
+    }
+
+    private Map<String, Integer> getSortedMapJava8(Map<String, Integer> mapToOrder) {
+        Map<String, Integer> sorted_map = new LinkedHashMap<>();
+        mapToOrder.entrySet().stream().sorted(Map.Entry.<String, Integer>comparingByValue())
+                .forEachOrdered(value -> sorted_map.put(value.getKey(), value.getValue()));
+        return sorted_map;
+    }
+
+    private String prepareToPrintMap(Map<String, Integer> mapSorted, Map<String, Integer> map) {
+        StringBuilder builderListWords = new StringBuilder("{ ");
+        int endOfSet = 0;
+        for (String key : mapSorted.keySet()) {
+            builderListWords.append(key).append(": ").append(map.get(key));
+            if (endOfSet != mapSorted.keySet().size() - 1) {
+                builderListWords.append(", ");
+            }
+            endOfSet++;
+        }
+        builderListWords.append(" }");
+        return builderListWords.toString();
+    }
+
 }
 
 class ValueComparator implements Comparator<String> {
-    Map<String, Integer> base;
+    private Map<String, Integer> base;
 
     public ValueComparator(Map<String, Integer> base) {
         this.base = base;
