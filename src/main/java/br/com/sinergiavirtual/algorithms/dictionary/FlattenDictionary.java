@@ -2,42 +2,39 @@ package br.com.sinergiavirtual.algorithms.dictionary;
 
 import java.util.*;
 
+/**
+ *
+ * Given a dictionary, write a function to flatten it.
+ * Consider the following input/output scenario for better understanding:
+ *
+ Input:
+
+ {
+ 'Key1': '1',
+ 'Key2': {
+ 'a' : '2',
+ 'b' : '3',
+ 'c' : {
+ 'd' : '3',
+ 'e' : '1'
+ }
+ }
+ }
+
+ Output:
+
+ {
+ 'Key1': '1',
+ 'Key2.a': '2',
+ 'Key2.b' : '3',
+ 'Key2.c.d' : '3',
+ 'Key2.c.e' : '1'
+ }
+
+ */
 public class FlattenDictionary {
 
-
     public static void main(String[] args) {
-
-        String word = "practice makes perfect. get perfect by practice. just practice!";
-        String[] words = word.trim().split("\\W");
-
-        List<String> listWords = new ArrayList<>();
-        StringBuilder builder = new StringBuilder();
-        TreeMap<Integer, Set<String>> mapWords = new TreeMap<>();
-        for(int i = 0; i < word.length(); i++) {
-            char letter = word.charAt(i);
-            if (letter != ' ' && letter != '!' && letter != '.') {
-                builder.append(letter);
-            } else {
-                if (builder.toString().trim().length() > 0) {
-                    listWords.add(builder.toString());
-                    /*
-                    if (mapWords.containsValue(builder.toString())) {
-                        mapWords.get
-                    }*/
-                }
-
-                builder = new StringBuilder();
-            }
-
-            if (i == word.length() - 1) {
-                if (builder.toString().trim().length() > 0) {
-                    listWords.add(builder.toString());
-                }
-                builder = new StringBuilder();
-            }
-        }
-    }
-    public static void main2(String[] args) {
 
         Map<String, Object> dictionary = new HashMap<>();
         Map<String, Object> mapKeyC = new HashMap<>();

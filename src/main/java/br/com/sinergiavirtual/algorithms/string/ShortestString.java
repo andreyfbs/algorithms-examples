@@ -6,7 +6,13 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Created by andrey on 19/03/17.
+ * Smallest Substring of All Characters
+ * Given an array with unique characters arr and a string str,
+ * find the smallest substring of str containing all characters of arr.
+ *
+ * Example:
+ * arr: [x,y,z], str: xyyzyzyx
+ * result: zyx
  */
 public class ShortestString {
 

@@ -15,7 +15,7 @@ public class CountWordsTest {
     }
 
     @Test
-    public void countTheWordsSuccessful() {
+    public void countTheWordsSomeWords() {
 
         // Arrange
         String sentence = "Car Bus Car Test Java";
@@ -27,5 +27,20 @@ public class CountWordsTest {
         // Assert
         Assert.assertThat(listWordsCount, Matchers.equalTo(expectedReturn));
     }
+
+    @Test
+    public void countTheWordsWithFullSentence() {
+
+        // Arrange
+        String sentence = "practice makes perfect. get perfect by practice. just practice!";
+        String expectedReturn = "{ practice: 3, perfect: 2, just: 1, makes: 1, by: 1, get: 1 }";
+
+        // Act
+        String listWordsCount = countWords.countTheWords(sentence);
+
+        // Assert
+        Assert.assertThat(listWordsCount, Matchers.equalTo(expectedReturn));
+    }
+
 
 }
