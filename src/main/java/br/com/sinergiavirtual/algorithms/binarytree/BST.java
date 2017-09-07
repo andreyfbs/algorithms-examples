@@ -14,6 +14,16 @@ import java.util.stream.Collectors;
  *
  * Note: This implementation is not Balanced
  *
+ * Vocabulary: Node, parent, child, leaf (final node)
+ *
+ * Time complexity in big O notation:
+ *
+ * Algorithm	Average	    Worst Case
+ * Space		O(n)	    O(n)
+ * Search		O(log n)	O(n)
+ * Insert		O(log n)	O(n)
+ * Delete		O(log n)	O(n)
+ *
  */
 public class BST {
 
@@ -86,7 +96,7 @@ public class BST {
         Deque<BSTNode> dequeStack = new ArrayDeque<>();
 
         // Find The Path, check dequeStack
-        findPathFromRootDFS(bstNodeRoot, bstNode, dequeStack);
+        findPathFromRootWithDFS(bstNodeRoot, bstNode, dequeStack);
 
         // Transform to List
         List<BSTNode> pathRootToNode1List = dequeStack.stream().collect(Collectors.toList());
@@ -153,27 +163,45 @@ public class BST {
     }
 
     /**
-     * This method searches through the Tree using DFS search and mount a path in the parameter pathStack
+     * This method searches through the Tree using DFS search and mount a path in the collection pathStack
      *
      * Recursive approach.
      *
-     * @param bstNode1 It Starts with the NodeRoot and after it uses the others nodes
-     * @param bstNode2 Node to be located
+     * @param bstNodeRoot It Starts with the NodeRoot and after it uses the others nodes
+     * @param bstNodeToFind Node to be located
      * @param pathStack Fill this parameter with the path between the nodes
      * @return True if it found the node
      */
-    private boolean findPathFromRootDFS(BSTNode bstNode1, BSTNode bstNode2, Deque<BSTNode> pathStack) {
-        //System.out.println(path);
-        if (bstNode1 == null) {
+    private boolean findPathFromRootWithDFS(final BSTNode bstNodeRoot, final BSTNode bstNodeToFind, final Deque<BSTNode> pathStack) {
+
+        // If the Node doesnt exist, is a leaf, so "false" and back to the parent
+        if (bstNodeRoot == null) {
             return false;
         }
-        pathStack.push(bstNode1);
-        if (bstNode1.getValue().equals(bstNode2.getValue())) {
+
+        // Push in the Stack
+        pathStack.push(bstNodeRoot);
+
+        // If the nodes are equal, it has found out the element, we already have the path!
+        if (bstNodeRoot.equals(bstNodeToFind)) {
             return true;
         }
-        if (findPathFromRootDFS(bstNode1.getLeft(), bstNode2, pathStack) || findPathFromRootDFS(bstNode1.getRight(), bstNode2, pathStack)) {
+
+        // Check if the root value is higher, in this case, continue the search in Left Tree. Otherwise, go to Right Tree
+        final BSTNode nextRoot;
+        if (bstNodeRoot.getValue() > bstNodeToFind.getValue()) {
+            nextRoot = bstNodeRoot.getLeft();
+        } else {
+            nextRoot = bstNodeRoot.getRight();
+        }
+
+        // Recursive algorithm, replace the root and keep going
+        // If find the Node, return true
+        if (findPathFromRootWithDFS(nextRoot, bstNodeToFind, pathStack)) {
             return true;
         }
+
+        // If not find the element in the path, pop the current root
         pathStack.pop();
         return false;
     }

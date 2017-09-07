@@ -1,5 +1,8 @@
 package br.com.sinergiavirtual.algorithms.binarytree;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 /**
  * Represents a Node of The Binary Tree
  */
@@ -59,4 +62,23 @@ public class BSTNode {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BSTNode bstNode = (BSTNode) o;
+
+        return new EqualsBuilder()
+                .append(value, bstNode.value)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(value)
+                .toHashCode();
+    }
 }
