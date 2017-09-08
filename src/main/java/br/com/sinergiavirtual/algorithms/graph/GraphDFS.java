@@ -7,7 +7,7 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class GraphBFS<T> {
+public class GraphDFS<T> {
 
     private GraphOfNodes<T> graph;
 
@@ -15,9 +15,9 @@ public class GraphBFS<T> {
 
         Set<Node> hasVisitedSet = new LinkedHashSet<>();
 
-        Deque<Node> bfsStack = new ArrayDeque<>();
+        Deque<Node> dfsStack = new ArrayDeque<>();
 
-        search(vertex, bfsStack, hasVisitedSet);
+        search(vertex, dfsStack, hasVisitedSet);
 
         return hasVisitedSet;
 

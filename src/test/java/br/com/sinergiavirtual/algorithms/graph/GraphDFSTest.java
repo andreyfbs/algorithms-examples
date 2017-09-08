@@ -3,15 +3,11 @@ package br.com.sinergiavirtual.algorithms.graph;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class GraphBFSTest {
+public class GraphDFSTest {
 
     @Before
     public void setUp() throws Exception {
@@ -69,9 +65,9 @@ public class GraphBFSTest {
 
         GraphOfNodes<Integer> graphOfNodes = new GraphOfNodes<>(node1);
 
-        GraphBFS<Integer> graphBFS = new GraphBFS<>();
+        GraphDFS<Integer> graphDFS = new GraphDFS<>();
 
-        Set<Node> bfsPath = graphBFS.search(graphOfNodes.getVertexNode());
+        Set<Node> bfsPath = graphDFS.search(graphOfNodes.getVertexNode());
 
         Stream.of(bfsPath).forEach(node -> System.out.print(node));
 
