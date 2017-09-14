@@ -1,48 +1,27 @@
 package br.com.sinergiavirtual.algorithms.graph;
 
-import java.util.ArrayDeque;
-import java.util.Comparator;
-import java.util.Deque;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class GraphDFS<T> {
 
     private GraphOfNodes<T> graph;
 
-    public Set<Node> search(Node vertex) {
+    private GraphDFSStrategy<T> graphDFSStrategy;
 
-        Set<Node> hasVisitedSet = new LinkedHashSet<>();
+    public GraphDFS(GraphOfNodes<T> graph, GraphDFSStrategy<T> graphDFSStrategy) {
+        this.graph = graph;
+        this.graphDFSStrategy = graphDFSStrategy;
+    }
 
-        Deque<Node> dfsStack = new ArrayDeque<>();
+    public Set<GraphNode> search() {
 
-        search(vertex, dfsStack, hasVisitedSet);
-
-        return hasVisitedSet;
+        return graphDFSStrategy.search(graph.getVertexGraphNode());
 
     }
 
-    private void search(Node vertex, Deque<Node> stack, Set<Node> pathVisited) {
-
-        stack.push(vertex);
-
-        pathVisited.add(vertex);
-
-        for (Iterator<Node> iter = vertex.getNodesConnections().iterator(); iter.hasNext(); ) {
-
-            Node nodeFriend = iter.next();
-
-            if (!pathVisited.contains(nodeFriend)) {
-                search(nodeFriend, stack, pathVisited);
-            }
-        }
-
-        stack.pop();
-
-    }
 }
 
+/*
 class NodeComparator implements Comparator<Node<Integer>> {
 
     public int compare(Node<Integer> node1, Node<Integer> node2) {
@@ -62,4 +41,4 @@ class NodeComparator2 implements Comparator<Node> {
     }
 
 }
-
+*/

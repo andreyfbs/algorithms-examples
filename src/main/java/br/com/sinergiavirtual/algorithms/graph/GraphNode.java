@@ -5,12 +5,12 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.util.Set;
 
-public class Node<T> {
+public class GraphNode<T> {
 
     private T value;
-    private Set<Node> nodesConnections;
+    private Set<GraphNode> nodesConnections;
 
-    public Node(T value, Set<Node> nodesConnections) {
+    public GraphNode(T value, Set<GraphNode> nodesConnections) {
         this.value = value;
         this.nodesConnections = nodesConnections;
     }
@@ -19,11 +19,11 @@ public class Node<T> {
         return value;
     }
 
-    public Set<Node> getNodesConnections() {
+    public Set<GraphNode> getNodesConnections() {
         return nodesConnections;
     }
 
-    public void addConnection(Node connection) {
+    public void addConnection(GraphNode connection) {
         nodesConnections.add(connection);
     }
 
@@ -33,10 +33,10 @@ public class Node<T> {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        Node<?> node = (Node<?>) o;
+        GraphNode<?> graphNode = (GraphNode<?>) o;
 
         return new EqualsBuilder()
-                .append(value, node.value)
+                .append(value, graphNode.value)
                 .isEquals();
     }
 

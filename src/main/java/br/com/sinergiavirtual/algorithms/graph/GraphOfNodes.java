@@ -2,13 +2,13 @@ package br.com.sinergiavirtual.algorithms.graph;
 
 public class GraphOfNodes<T> {
 
-    private Node<T> vertexNode;
+    private GraphNode<T> vertexGraphNode;
 
-    public GraphOfNodes(Node<T> vertexNode) {
-        this.vertexNode = vertexNode;
+    public GraphOfNodes(GraphNode<T> vertexGraphNode) {
+        this.vertexGraphNode = vertexGraphNode;
     }
 
-    public Node<T> getVertexNode() {
-        return vertexNode;
+    public GraphNode<T> getVertexGraphNode() {
+        return vertexGraphNode;
     }
 }

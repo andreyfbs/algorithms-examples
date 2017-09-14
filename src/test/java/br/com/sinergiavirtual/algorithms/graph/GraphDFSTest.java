@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -17,57 +18,46 @@ public class GraphDFSTest {
     @Test
     public void search() throws Exception {
 
-        Node<Integer> node1 = new Node<>(1, new HashSet<>());
+        GraphNode<Integer> graphNode1 = new GraphNode<>(1, new LinkedHashSet<>());
 
-        Node<Integer> node2 = new Node<>(2, new HashSet<>());
-        node2.addConnection(node1);
-        node1.addConnection(node2);
+        GraphNode<Integer> graphNode3 = new GraphNode<>(3, new LinkedHashSet<>());
+        graphNode3.addConnection(graphNode1);
+        graphNode1.addConnection(graphNode3);
 
-        Node<Integer> node3 = new Node<>(3, new HashSet<>());
-        node3.addConnection(node1);
-        node1.addConnection(node3);
+        GraphNode<Integer> graphNode2 = new GraphNode<>(2, new LinkedHashSet<>());
+        graphNode2.addConnection(graphNode1);
+        graphNode1.addConnection(graphNode2);
 
-        Node<Integer> node4 = new Node<>(4, new HashSet<>());
-        node4.addConnection(node2);
-        node2.addConnection(node4);
+        GraphNode<Integer> graphNode5 = new GraphNode<>(5, new LinkedHashSet<>());
+        graphNode5.addConnection(graphNode2);
+        graphNode2.addConnection(graphNode5);
 
-        Node<Integer> node5 = new Node<>(5, new HashSet<>());
-        node5.addConnection(node2);
-        node2.addConnection(node5);
+        GraphNode<Integer> graphNode4 = new GraphNode<>(4, new LinkedHashSet<>());
+        graphNode4.addConnection(graphNode2);
+        graphNode2.addConnection(graphNode4);
 
-        Node<Integer> node6 = new Node<>(6, new HashSet<>());
-        node6.addConnection(node3);
-        node3.addConnection(node6);
+        GraphNode<Integer> graphNode6 = new GraphNode<>(6, new LinkedHashSet<>());
+        graphNode6.addConnection(graphNode3);
+        graphNode3.addConnection(graphNode6);
 
-        Node<Integer> node7 = new Node<>(7, new HashSet<>());
-        node7.addConnection(node4);
-        node4.addConnection(node7);
+        GraphNode<Integer> graphNode7 = new GraphNode<>(7, new LinkedHashSet<>());
+        graphNode7.addConnection(graphNode4);
+        graphNode4.addConnection(graphNode7);
 
-        Node<Integer> node8 = new Node<>(8, new HashSet<>());
-        node8.addConnection(node7);
-        node7.addConnection(node8);
+        GraphNode<Integer> graphNode8 = new GraphNode<>(8, new HashSet<>());
+        graphNode8.addConnection(graphNode3);
+        graphNode3.addConnection(graphNode8);
 
-        node8.addConnection(node3);
-        node3.addConnection(node8);
+        graphNode8.addConnection(graphNode7);
+        graphNode7.addConnection(graphNode8);
 
-        /*
-        Node<Integer> node8 = new Node<>(8, new HashSet<>());
-        //Node node7 = new Node(7, new TreeSet<>());
-        Node<Integer> node7 = new Node<>(7, Stream.of(node8).collect(Collectors.toSet()));
-        Node<Integer> node6 = new Node<>(6, new HashSet<>());
-        Node<Integer> node5 = new Node<>(5, new HashSet<>());
-        Node<Integer> node4 = new Node<>(4, Stream.of(node7).collect(Collectors.toSet()));
-        Node<Integer> node3 = new Node<>(3, Stream.of(node6).collect(Collectors.toSet()));
-        Node<Integer> node2 = new Node<>(2, Stream.of(node4, node5).collect(Collectors.toSet()));
-        Node<Integer> node1 = new Node<>(1, Stream.of(node2, node3).collect(Collectors.toSet()));
-        node8.addConnection(node3);
-        */
+        GraphOfNodes<Integer> graphOfNodes = new GraphOfNodes<>(graphNode1);
 
-        GraphOfNodes<Integer> graphOfNodes = new GraphOfNodes<>(node1);
+        GraphDFS<Integer> graphDFS = new GraphDFS<>(graphOfNodes, new GraphDFSRecursiveStrategy<>());
 
-        GraphDFS<Integer> graphDFS = new GraphDFS<>();
+        Set<GraphNode> bfsPath = graphDFS.search();
 
-        Set<Node> bfsPath = graphDFS.search(graphOfNodes.getVertexNode());
+        //Li[Node [value=1], Node [value=2], Node [value=4], Node [value=7], Node [value=8], Node [value=3], Node [value=6], Node [value=5]]
 
         Stream.of(bfsPath).forEach(node -> System.out.print(node));
 
