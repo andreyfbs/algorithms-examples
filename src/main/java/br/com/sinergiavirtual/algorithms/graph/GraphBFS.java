@@ -1,52 +1,22 @@
 package br.com.sinergiavirtual.algorithms.graph;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class GraphBFS<T> {
 
     private GraphOfNodes<T> graph;
 
-    public Set<GraphNode> search(GraphNode vertex) {
+    private GraphBFSStrategy<T> graphBFSStrategy;
 
-        Set<GraphNode> hasVisitedSet = new LinkedHashSet<>();
+    public GraphBFS(GraphOfNodes<T> graph, GraphBFSStrategy<T> graphBFSStrategy) {
+        this.graph = graph;
+        this.graphBFSStrategy = graphBFSStrategy;
+    }
 
-        Deque<GraphNode> bfsQueue = new ArrayDeque<>();
+    public Set<GraphNode> search() {
 
-        search(vertex, bfsQueue, hasVisitedSet);
-
-        return hasVisitedSet;
+        return graphBFSStrategy.search(graph.getVertexGraphNode());
 
     }
 
-    private void search(GraphNode vertex, Deque<GraphNode> queue, Set<GraphNode> pathVisited) {
-
-        queue.offer(vertex);
-
-        pathVisited.add(vertex);
-
-        System.out.println("Queue: " + queue + "\t");
-
-
-        for (Iterator<GraphNode> iter = vertex.getNodesConnections().iterator(); iter.hasNext(); ) {
-
-            GraphNode graphNodeFriend = iter.next();
-            pathVisited.add(graphNodeFriend);
-
-        }
-
-        /*
-        if (!pathVisited.contains(nodeFriend)) {
-            search(nodeFriend, queue, pathVisited);
-        }*/
-
-
-        System.out.println("Queue: " + queue + "\t");
-
-        queue.poll();
-
-    }
 }

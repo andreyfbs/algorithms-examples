@@ -1,11 +1,15 @@
 package br.com.sinergiavirtual.algorithms.graph;
 
+import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.HashSet;
+import java.util.AbstractSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class GraphDFSTest {
@@ -18,6 +22,7 @@ public class GraphDFSTest {
     @Test
     public void search() throws Exception {
 
+        // Arrange Parameter
         GraphNode<Integer> graphNode1 = new GraphNode<>(1, new LinkedHashSet<>());
 
         GraphNode<Integer> graphNode3 = new GraphNode<>(3, new LinkedHashSet<>());
@@ -44,7 +49,7 @@ public class GraphDFSTest {
         graphNode7.addConnection(graphNode4);
         graphNode4.addConnection(graphNode7);
 
-        GraphNode<Integer> graphNode8 = new GraphNode<>(8, new HashSet<>());
+        GraphNode<Integer> graphNode8 = new GraphNode<>(8, new LinkedHashSet<>());
         graphNode8.addConnection(graphNode3);
         graphNode3.addConnection(graphNode8);
 
@@ -52,14 +57,31 @@ public class GraphDFSTest {
         graphNode7.addConnection(graphNode8);
 
         GraphOfNodes<Integer> graphOfNodes = new GraphOfNodes<>(graphNode1);
-
         GraphDFS<Integer> graphDFS = new GraphDFS<>(graphOfNodes, new GraphDFSRecursiveStrategy<>());
 
-        Set<GraphNode> bfsPath = graphDFS.search();
+        // Arrange
+        final LinkedHashSet<GraphNode> graphNodeExpected = new LinkedHashSet<>();
+        graphNodeExpected.add(graphNode1);
+        graphNodeExpected.add(graphNode2);
+        graphNodeExpected.add(graphNode4);
+        graphNodeExpected.add(graphNode7);
+        graphNodeExpected.add(graphNode8);
+        graphNodeExpected.add(graphNode3);
+        graphNodeExpected.add(graphNode6);
+        graphNodeExpected.add(graphNode5);
 
-        //Li[Node [value=1], Node [value=2], Node [value=4], Node [value=7], Node [value=8], Node [value=3], Node [value=6], Node [value=5]]
+        // Act
+        Set<GraphNode> dfsPath = graphDFS.search();
 
-        Stream.of(bfsPath).forEach(node -> System.out.print(node));
+        // Tranform to List to do the Assert with Order
+        List<GraphNode> dfsPathReturned = dfsPath.stream().collect(Collectors.toList());
+        List<GraphNode> dfsPathExpected = graphNodeExpected.stream().collect(Collectors.toList());
+
+        // Print
+        dfsPathReturned.forEach(node -> System.out.print(node + ", "));
+
+        // Assert
+        Assert.assertThat(dfsPathReturned, Matchers.equalTo(dfsPathExpected));
 
     }
 }

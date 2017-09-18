@@ -6,6 +6,11 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ * In the iterative approach: You first insert all the elements into the stack - and then handle the head of the stack [which is the last node inserted] - thus the first node you handle is the last child.
+ * In the recursive approach: You handle each node when you see it. Thus the first node you handle is the first child.
+ *
+ */
 public class GraphDFSRecursiveStrategy<T> implements GraphDFSStrategy {
 
     public Set<GraphNode> search(GraphNode vertex) {
