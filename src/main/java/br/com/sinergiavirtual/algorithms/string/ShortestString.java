@@ -16,6 +16,9 @@ import java.util.Set;
  */
 public class ShortestString {
 
+    /**
+     *
+     */
     private static Map<Character, Integer> frequency;
     private static Set<Character> charsCovered;
     private static Map<Character, Integer> encountered;
@@ -41,12 +44,14 @@ public class ShortestString {
             return null;
         }
 
-        frequency = new HashMap<Character, Integer>();
-        instantiateFrequencyMap(small);
+        frequency = new HashMap<>();
         charsCovered = new HashSet<>();
-        int charsToBeCovered = frequency.size();
-        encountered = new HashMap<Character, Integer>();
+        encountered = new HashMap<>();
 
+        // Put any Character of small in the Map
+        instantiateFrequencyMap(small);
+
+        int charsToBeCovered = frequency.size();
         for (int i = 0; i < big.length(); i++) {
             currentChar = big.charAt(i);
             if (frequency.containsKey(currentChar) && !isFound) {
@@ -65,7 +70,7 @@ public class ShortestString {
 
                     while (currentStartIndex < i) {
                         if (currentChar == big.charAt(currentStartIndex)) {
-
+                            // TODO
                         }
                     }
 
