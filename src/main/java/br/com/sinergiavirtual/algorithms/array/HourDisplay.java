@@ -92,13 +92,14 @@ public class HourDisplay {
             if (hourPositions.get(i).contains(currentValue)) {
                 earliestTimeArray[i] = currentValue;
             } else {
-                // Try to find the closest Neighbor that has the number that can change
+                // Try to find the previous closest Neighbor that has the number that can change
                 boolean changePosition = false;
-                for (int j = i - 1; j > 0; j--) {
+                for (int j = i - 1; j >= 0; j--) {
 
-                    // If found a Neighbor
+                    // If founded a Neighbor
                     if (hourPositions.get(i).contains(earliestTimeArray[j])
                             && hourPositions.get(j).contains(currentValue)) {
+                        // Change the value each other
                         earliestTimeArray[i] = earliestTimeArray[j];
                         earliestTimeArray[j] = currentValue;
                         changePosition = true;

@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 /**
  *
- * The score is computed for each throw. The last score is the score of the previous throw and the total score is the sum of all the last scores.
+ * Bowling Game. The score is computed for each throw.
+ * The last score is the score of the previous throw and the total score is the sum of all the last scores.
  *
  * Integer, the value of the Integer is added to the total score.
  * 'X' - the last score is doubled and added to the total score.
@@ -22,7 +23,7 @@ import java.util.Arrays;
  *  + =  13( 8+9-4)
  *  + =  27(13+9+5)
  */
-public class BaseballGame {
+public class BowlingGame {
 
     public static void main(String [] args) {
 

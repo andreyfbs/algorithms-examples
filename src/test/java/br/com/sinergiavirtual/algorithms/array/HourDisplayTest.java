@@ -19,6 +19,7 @@ public class HourDisplayTest {
         final int d = 2;
         final int e = 6;
         final int f = 4;
+        // 12:36:48
         final int[] arrayExpected = new int[] { 1, 2, 3, 6, 4, 8 };
 
         // Act
@@ -40,6 +41,7 @@ public class HourDisplayTest {
         final int d = 9;
         final int e = 0;
         final int f = 5;
+        // 00:05:59
         final int[] arrayExpected = new int[] { 0, 0, 0, 5, 5, 9 };
 
         // Act
@@ -60,6 +62,7 @@ public class HourDisplayTest {
         final int d = 5;
         final int e = 2;
         final int f = 4;
+        // 22:47:59
         final int[] arrayExpected = new int[] { 2, 2, 4, 7, 5, 9 };
 
         // Act
@@ -92,6 +95,24 @@ public class HourDisplayTest {
 
     }
 
+    @Test
+    public void checkInvalidNumber() throws Exception {
 
+        // Arrange
+        final int a = 0;
+        final int b = 1;
+        final int c = 5;
+        final int d = 79;
+        final int e = 2;
+        final int f = 5;
+        final String resultExpected = "IMPOSSIBLE TO FORMAT";
+
+        // Act
+        HourDisplay hourDisplay = new HourDisplay();
+        final String arrayResultString = hourDisplay.calculateShortestTimeDisplay(a, b, c, d, e, f);
+
+        // Assert
+        Assert.assertEquals(resultExpected, arrayResultString);
+
+    }
 }
-
