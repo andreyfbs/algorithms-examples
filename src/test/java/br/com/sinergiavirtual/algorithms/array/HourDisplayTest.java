@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class HourDisplayTest {
 
     @Test
-    public void calculateChange4th() throws Exception {
+    public void shiftFourthElement() throws Exception {
 
         // Arrange
         final int a = 1;
@@ -31,16 +31,16 @@ public class HourDisplayTest {
     }
 
     @Test
-    public void calculateChange4thWithZeros() throws Exception {
+    public void repeatMoreThan2Elements() throws Exception {
 
         // Arrange
         final int a = 0;
-        final int b = 7;
+        final int b = 5;
         final int c = 0;
         final int d = 9;
         final int e = 0;
-        final int f = 4;
-        final int[] arrayExpected = new int[] { 0, 0, 0, 7, 4, 9 };
+        final int f = 5;
+        final int[] arrayExpected = new int[] { 0, 0, 0, 5, 5, 9 };
 
         // Act
         HourDisplay hourDisplay = new HourDisplay();
@@ -51,7 +51,7 @@ public class HourDisplayTest {
     }
 
     @Test
-    public void calculateInitWith2() throws Exception {
+    public void checkNumber2FirstPosition() throws Exception {
 
         // Arrange
         final int a = 9;
@@ -70,6 +70,28 @@ public class HourDisplayTest {
         Assert.assertEquals(Arrays.toString(arrayExpected), arrayResultString);
 
     }
+
+    @Test
+    public void checkNumber2FirstPositionImpossible() throws Exception {
+
+        // Arrange
+        final int a = 9;
+        final int b = 7;
+        final int c = 5;
+        final int d = 5;
+        final int e = 2;
+        final int f = 7;
+        final String resultExpected = "IMPOSSIBLE TO FORMAT";
+
+        // Act
+        HourDisplay hourDisplay = new HourDisplay();
+        final String arrayResultString = hourDisplay.calculateShortestTimeDisplay(a, b, c, d, e, f);
+
+        // Assert
+        Assert.assertEquals(resultExpected, arrayResultString);
+
+    }
+
 
 }
 
