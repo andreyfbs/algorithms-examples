@@ -16,23 +16,23 @@ import java.util.TreeMap;
  * Given an array of numbers arr and a number S, find 4 different numbers in arr that sum up to S.
  *
  * Write a function that gets arr and S and returns an array with 4 indices of such numbers in arr,
- * or null if no such combination exists. Explain and code the most efficient solution possible, and
+ * or null if no such combination exists. Explain and code the most efficient calculateShortestTimeDisplay possible, and
  * analyze its runtime and space complexity.
  *
  * Hints & Tips The array is not sorted, and may hold any real number (positive, negative, zero,
  * integer or fraction)
  *
- * Any solution of more than O(n2) is not efficient enough. Please rate your peer feedback
+ * Any calculateShortestTimeDisplay of more than O(n2) is not efficient enough. Please rate your peer feedback
  * accordingly.
  *
- * If you peer can't even think of the naive solution, ask how can you check all numbers in arr to
- * come up with a solution.
+ * If you peer can't even think of the naive calculateShortestTimeDisplay, ask how can you check all numbers in arr to
+ * come up with a calculateShortestTimeDisplay.
  *
- * If your peer can't improve the naive solution, ask how can you use a pre-computation to save some
+ * If your peer can't improve the naive calculateShortestTimeDisplay, ask how can you use a pre-computation to save some
  * work and improve efficiency. If that doesn't help, ask how would a list of all pairs by their sum
  * help to solve, and then ask how can such a list be calculated and stored.
  *
- * Make sure that your peer's solution handles the case in which pairSum == S-pairSum correctly.
+ * Make sure that your peer's calculateShortestTimeDisplay handles the case in which pairSum == S-pairSum correctly.
  */
 public class QuadCombination {
 
