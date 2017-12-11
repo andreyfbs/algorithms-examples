@@ -2,11 +2,15 @@ package br.com.sinergiavirtual.algorithms.array;
 
 import java.util.*;
 
+/**
+ * Calculate de earliest time given 6 numbers. Attention to only valid results
+ * Ex. 2, 6, 8, 1, 4, 3 = 12:36:48
+ */
 public class HourDisplay {
-    public String calculateShortestTimeDisplay(int A, int B, int C, int D, int E, int F) {
+    public String calculateShortestTimeDisplay(int number1, int number2, int number3, int number4, int number5, int number6) {
 
         // Put elements in array
-        Integer[] inputArray = {A, B, C, D, E, F};
+        Integer[] inputArray = {number1, number2, number3, number4, number5, number6};
 
         // Sort this array
         Arrays.sort(inputArray);
