@@ -5,7 +5,12 @@ public class RecursiveDigitSum {
     public int digitSum(String n, int k) {
 
         int superDigit = 0;
-        String superDigitString = n;
+        String superDigitString = "0";
+
+        for (int i = 0; i < k; i++) {
+            superDigitString += n;
+        }
+
         boolean digitAmount = true;
         while (digitAmount) {
             superDigitString = calculeSum(superDigitString);
