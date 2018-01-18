@@ -1,7 +1,15 @@
 package br.com.sinergiavirtual.algorithms.array;
 
 /**
- * Created by andrey on 14/01/18.
+ *
+ * 11 12 13
+ * 21 22 23
+ * 31 32 33
+ * 
+ * 11 12 13 14
+ * 21 22 23 24
+ * 31 32 33 34
+ * 41 42 43 44
  */
 public class DiagonalDifference {
 
