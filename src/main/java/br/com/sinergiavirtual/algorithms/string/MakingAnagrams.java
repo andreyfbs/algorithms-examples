@@ -10,11 +10,10 @@ public class MakingAnagrams {
         Map<Character, Integer> mapOcurrencies = new HashMap<>();
         for (int i = 0; i < word1.length(); i++) {
             char keyCharacter = word1.charAt(i);
-            if (mapOcurrencies.containsKey(keyCharacter)) {
-                mapOcurrencies.put(keyCharacter, mapOcurrencies.get(keyCharacter) + 1);
-            } else {
-                mapOcurrencies.put(keyCharacter, 1);
-            }
+
+            mapOcurrencies.computeIfPresent(keyCharacter, (k, v) -> v + 1);
+
+            mapOcurrencies.putIfAbsent(keyCharacter, 1);
         }
 
         for (int i = 0; i < word2.length(); i++) {
