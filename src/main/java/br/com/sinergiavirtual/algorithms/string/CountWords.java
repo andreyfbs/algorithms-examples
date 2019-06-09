@@ -1,13 +1,6 @@
 package br.com.sinergiavirtual.algorithms.string;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Implement a document scanning engine that receives a text document doc
@@ -28,11 +21,9 @@ public class CountWords {
     private static void firstSolution(String[] args) {
 
         String word = "practice makes perfect. get perfect by practice. just practice!";
-        String[] words = word.trim().split("\\W");
 
         List<String> listWords = new ArrayList<>();
         StringBuilder builder = new StringBuilder();
-        TreeMap<Integer, Set<String>> mapWords = new TreeMap<>();
         for(int i = 0; i < word.length(); i++) {
             char letter = word.charAt(i);
             if (letter != ' ' && letter != '!' && letter != '.') {
