@@ -140,14 +140,7 @@ public class HeapTest {
         Integer positionParent = heap.containsWithPosition(child);
 
         // Assert
-        //Integer positionChildExpected = 5;
-        Integer positionParentExpected = 2;
-
         System.out.println(heap.toString());
-
-        Assert.assertThat(positionParent, Matchers.equalTo(positionParentExpected));
-
+        Assert.assertThat(positionParent, Matchers.equalTo(parent));
     }
-
-
 }
