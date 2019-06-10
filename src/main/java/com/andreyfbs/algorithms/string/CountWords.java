@@ -30,7 +30,7 @@ public class CountWords {
     /**
      * Given a String count how many occurrences by word
      */
-    public String countWords(String input) {
+    public String countWords(String input, int n) {
 
         // Basic validation
         if (input == null || input.trim().isEmpty() || input.length() > Integer.MAX_VALUE) {
@@ -51,6 +51,7 @@ public class CountWords {
         final Map<String, Integer> mapWordsSorted =
                 mapWords.entrySet()
                         .stream().sorted((o1, o2) -> o2.getValue().compareTo(o1.getValue()))
+                        .limit(n)
                         //.forEachOrdered(value -> mapWordsSorted.put(value.getKey(), value.getValue()));
                         .collect(Collectors.toMap(o -> o.getKey(), o -> o.getValue(), (o, o2) -> o2, LinkedHashMap::new));
 
