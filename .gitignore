@@ -45,7 +45,7 @@ build/
 #para o Jenkins !!!!
 #gradle/
 #gradle-app.setting
-#!gradle-wrapper.jar
+!gradle-wrapper.jar
 
 # Mongo Explorer plugin:
 # .idea/mongoSettings.xml
