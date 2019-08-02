@@ -20,7 +20,7 @@ public class BalancedBrackets {
       }
 
       if (bracket == ']' || bracket == '}' || bracket == ')') {
-        if (checkClosingBracket(bracketStack, bracket)) {
+        if (findThePair(bracketStack, bracket)) {
           return false;
         }
       }
@@ -29,18 +29,14 @@ public class BalancedBrackets {
     return true;
   }
 
-  private boolean checkClosingBracket(final Deque<Character> bracketStack, final char bracket) {
+  private boolean findThePair(final Deque<Character> bracketStack, final char bracket) {
     Character currentBracket = null;
     try {
       currentBracket = bracketStack.pop();
     } catch (NoSuchElementException e) {
       return true;
     }
-    if (currentBracket == null) {
-      return true;
-    }
-    else
-      return currentBracket != getPair(bracket);
+    return !getPair(bracket).equals(currentBracket);
   }
 
   private boolean basicValidation(final String input, final char bracket) {
@@ -58,7 +54,7 @@ public class BalancedBrackets {
     return input.length() % 2 != 0;
   }
 
-  private char getPair(char bracket) {
+  private Character getPair(char bracket) {
     if (bracket == ']') {
       return '[';
     }
